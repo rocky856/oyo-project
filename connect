@@ -1,0 +1,21 @@
+import sqlite3 as sq
+
+def connect(dbname):
+    conn=sq.connect(dbname)
+    conn.executeREATE TABLE IF NOT EXISTS OYO_HOTALS (NAME TEXT, ADDRESS TEXT, PRICE INT, RATING TEXT, AMENITIES TEXT)")
+    print("Table created successfully")
+    conn.close()
+
+def insert_into_table(dbname,values):
+    conn=sq.connect(dbname)
+    insert_sql = "INSERT INTO OYO_HOTALS (NAME, ADDRESS, PRICE, RATING, AMENITIES) VALUES (?, ?, ?, ?, ?)"
+    conn.execute(insert_sql,(insert_sql,values)
+    conn.close()
+def get_hotel_info(dbname):
+    conn=sq.connect(dbname)
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM OYO_HOTALS")
+    table_data=cur.fetchall()
+   for r in table_data:
+        print(r)
+    conn.close()
